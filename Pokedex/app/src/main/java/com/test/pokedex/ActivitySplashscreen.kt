@@ -1,0 +1,37 @@
+package com.test.pokedex
+
+import android.content.Intent
+import android.os.Bundle
+import android.os.Handler
+import androidx.appcompat.app.AppCompatActivity
+
+class ActivitySplashscreen : AppCompatActivity() {
+
+    lateinit var handler: Handler
+    val SPLASHCREEN_DURATION:Long = 3000
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_splaschscreen)
+
+        handler = Handler()
+        handler.postDelayed(Runnable {
+            var intent: Intent = Intent(this,ActivityLogin::class.java)
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
+                    or Intent.FLAG_ACTIVITY_NEW_TASK
+                    or Intent.FLAG_ACTIVITY_SINGLE_TOP)
+            intent.putExtra("USERNAME","pokedex")
+            intent.putExtra("PASSWORD","pokedex")
+
+            this.startActivity(intent)
+        },SPLASHCREEN_DURATION)
+
+    }
+}
+
+
+
+
+
+
+
