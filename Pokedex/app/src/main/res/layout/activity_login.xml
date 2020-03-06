@@ -4,28 +4,69 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ActivitySplashscreen">
+    tools:context=".ActivitySplashscreen"
+    android:background="@drawable/gradiente_fondo"
+    >
 
-    <com.google.android.material.appbar.AppBarLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
+        android:layout_height="match_parent">
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="120dp"
+            >
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:src="@drawable/pokemon_logo_min"
+                android:layout_gravity="center"
+                />
 
-    </com.google.android.material.appbar.AppBarLayout>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nombre de Usuario"
+                android:textSize="32sp"
+                android:textColor="@color/colorSecondaryText"
+                android:textColorHint="@color/colorPrimaryText"
+                android:gravity="center"
+                />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Contraseña"
+                android:textSize="32sp"
+                android:textColor="@color/colorSecondaryText"
+                android:textColorHint="@color/colorPrimaryText"
+                android:gravity="center"
+                android:inputType="textPassword"
+                />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Iniciar Sesión"
+                android:textSize="24sp"
+                android:textColor="@color/colorSecondaryText"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Login!"
-        android:layout_centerInParent="true"
-        android:gravity="center"
-        android:textSize="24sp"
+
+
+
+    <ImageView
+        android:layout_width="240dp"
+        android:layout_height="240dp"
+        android:src="@drawable/pikachu_min"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="80dp"
+
         />
+
 </RelativeLayout>

@@ -23,6 +23,8 @@ class ActivitySplashscreen : AppCompatActivity() {
             intent.putExtra("USERNAME","pokedex")
             intent.putExtra("PASSWORD","pokedex")
 
+            finish()
+
             this.startActivity(intent)
         },SPLASHCREEN_DURATION)
 
