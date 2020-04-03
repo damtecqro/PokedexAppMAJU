@@ -1,19 +1,23 @@
 package com.test.pokedex.Adapters
 
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
 import com.koushikdutta.ion.Ion
+import com.test.pokedex.Activities.ActivityDetailV1
+import com.test.pokedex.Activities.ActivityDetailV2
 import com.test.pokedex.R
 
 class AdapterList :RecyclerView.Adapter<AdapterList.ViewHolder>() {
@@ -28,7 +32,7 @@ class AdapterList :RecyclerView.Adapter<AdapterList.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdapterList.ViewHolder {
         var layoutInflater = LayoutInflater.from(parent.context)
-        return ViewHolder(layoutInflater.inflate(R.layout.item_list,parent,false))
+        return ViewHolder(layoutInflater.inflate(R.layout.item_grid_list,parent,false))
     }
 
     override fun getItemCount(): Int {
@@ -45,9 +49,26 @@ class AdapterList :RecyclerView.Adapter<AdapterList.ViewHolder>() {
     class ViewHolder(view:View):RecyclerView.ViewHolder(view){
         private var imagePokemon: ImageView = view.findViewById(R.id.pokemon_image)
         private var namePokemon: TextView   = view.findViewById(R.id.pokemon_name)
+        private var cardView: CardView = view.findViewById(R.id.card_view)
+        private var buttonV1: Button = view.findViewById(R.id.btn_v1)
+        private var buttonV2: Button = view.findViewById(R.id.btn_v2)
 
         fun bind(item:JsonObject,context: Context){
-            namePokemon.setText(item.get("name").asString)
+            namePokemon.setText(item.get("name").asString.toUpperCase())
+
+            buttonV1.setOnClickListener {
+                var intent:Intent = Intent(context,ActivityDetailV1::class.java)
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_SINGLE_TOP)
+                intent.putExtra("URL", item.get("url").asString)
+                context.startActivity(intent)
+            }
+
+            buttonV2.setOnClickListener {
+                var intent:Intent = Intent(context, ActivityDetailV2::class.java)
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_SINGLE_TOP)
+                intent.putExtra("URL", item.get("url").asString)
+                context.startActivity(intent)
+            }
 
             Ion.with(context)
                 .load(item.get("url").asString)
